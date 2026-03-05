@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cholistan Tractors | Al-Ghazi Dealership</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar light-nav">
+        <div class="nav-header">
+            <div class="logo">
+                <span class="urdu-logo">چولستان ٹریکٹرز</span>
+                <span class="logo-separator">|</span>
+                <span class="eng-logo">Cholistan Tractors</span>
+            </div>
+            <div class="mobile-toggle" id="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#models">Models</a></li>
+            <li><a href="#scheme">Green Scheme</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact-us">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero modern-hero">
+        <div class="hero-container">
+            <div class="hero-text">
+                <div class="hero-badge">🚜 Premium Agricultural Machinery</div>
+                <h1 class="eng-hero-title">
+                    Powering The <br>
+                    <span class="text-gradient">Future Of Farming</span>
+                </h1>
+                <h2 class="urdu-hero-title" dir="rtl">چولستان ٹریکٹرز میں خوش آمدید</h2>
+                <p class="hero-description">Your trusted partner for Al-Ghazi New Holland tractors. We deliver unmatched
+                    performance, uncompromising durability, and absolute reliability for every field.</p>
+
+                <div class="hero-actions">
+                    <a href="#models" class="btn rich-primary-btn">Explore Models <span class="arrow">→</span></a>
+                    <a href="#scheme" class="btn rich-secondary-btn">Green Scheme</a>
+                </div>
+
+                <div class="hero-stats-row">
+                    <div class="h-stat">
+                        <span class="stat-number">20+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="h-stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Genuine Parts</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-image-frame" id="hero-carousel-frame">
+                    <div class="carousel-container">
+                        <img src="https://www.alghazitractors.com/wp-content/uploads/2025/08/01-NH-480s-1.jpg"
+                            alt="NH 480 Special" class="hero-main-img carousel-img active" data-anim="fadeZoom">
+                        <img src="https://www.alghazitractors.com/wp-content/uploads/2025/08/02-NH-480pp-1.jpg"
+                            alt="NH 480 Power Plus" class="hero-main-img carousel-img" data-anim="slideLeft">
+                        <img src="https://www.alghazitractors.com/wp-content/uploads/2025/08/03-NH-Ghazi-1.jpg"
+                            alt="Ghazi Tractor" class="hero-main-img carousel-img" data-anim="slideUp">
+                        <img src="https://www.alghazitractors.com/wp-content/uploads/2025/08/04-NH-640-1.jpg"
+                            alt="New Holland 640" class="hero-main-img carousel-img" data-anim="flipIn">
+                        <img src="https://www.alghazitractors.com/wp-content/uploads/2025/08/05-NH-850-1.jpg"
+                            alt="NH 850 Lift-O-Matic" class="hero-main-img carousel-img" data-anim="fadeZoom">
+                        <img src="https://www.alghazitractors.com/wp-content/uploads/2025/08/06-NH-850-without-lift-o-matic-1.jpg"
+                            alt="NH 850 Regular" class="hero-main-img carousel-img" data-anim="slideRight">
+                        <img src="https://www.alghazitractors.com/wp-content/uploads/2025/08/07-NH-850s-ECO-2.jpg"
+                            alt="NH 850 ECO Lift-O-Matic" class="hero-main-img carousel-img" data-anim="slideUp">
+                        <img src="https://www.alghazitractors.com/wp-content/uploads/2025/08/08-NH-850s-ECO-without-lift-o-matic-2.jpg"
+                            alt="NH 850 ECO" class="hero-main-img carousel-img" data-anim="flipIn">
+                    </div>
+
+                    <div class="carousel-indicators" id="hero-carousel-indicators">
+                        <span class="indicator active" data-slide="0"></span>
+                        <span class="indicator" data-slide="1"></span>
+                        <span class="indicator" data-slide="2"></span>
+                        <span class="indicator" data-slide="3"></span>
+                        <span class="indicator" data-slide="4"></span>
+                        <span class="indicator" data-slide="5"></span>
+                        <span class="indicator" data-slide="6"></span>
+                        <span class="indicator" data-slide="7"></span>
+                    </div>
+
+                    <div class="floating-glass-card top-left-float">
+                        <div class="f-icon">🏆</div>
+                        <div class="f-text">
+                            <strong>Authorized Dealer</strong>
+                            <span>Al-Ghazi Tractors Ltd</span>
+                        </div>
+                    </div>
+
+                    <div class="floating-glass-card bottom-right-float">
+                        <div class="f-icon">💯</div>
+                        <div class="f-text">
+                            <strong>Reliable Service</strong>
+                            <span>24/7 Support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- New: Green Tractor Scheme Section -->
+        <section id="scheme" class="scheme-section">
+            <div class="section-header">
+                <h2 class="urdu-section-title">پنجاب گرین ٹریکٹر سکیم</h2>
+                <h3>CM Green Tractor Scheme Phase 3</h3>
+                <p>A phenomenal initiative providing a flat Rs. 500,000 subsidy per eligible tractor.</p>
+            </div>
+
+            <div class="scheme-container">
+                <div class="scheme-video-wrapper">
+                    <video class="scheme-video" controls
+                        poster="https://www.alghazitractors.com/wp-content/uploads/2025/08/01-NH-480s-1.jpg">
+                        <source src="https://alghazitractors.com/wp-content/uploads/2025/08/videos/video-01.mp4"
+                            type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="scheme-content">
+                    <div class="subsidy-badge">Subsidy Valid: Rs. 500,000</div>
+                    <p class="scheme-desc">Take advantage of the monumental Chief Minister Punjab Green Tractor Scheme
+                        Phase 3. The government has allocated 10,000 tractors providing a flat, direct subsidy of Rs.
+                        500,000 per tractor to eligible farmers.</p>
+
+                    <div class="scheme-pricing">
+                        <div class="scheme-price-row">
+                            <strong>NH-480S (55HP)</strong>
+                            <span>Farmer Share: Rs. 1,928,200</span>
+                        </div>
+                        <div class="scheme-price-row">
+                            <strong>NH-480PP (55HP)</strong>
+                            <span>Farmer Share: Rs. 2,022,820</span>
+                        </div>
+                        <div class="scheme-price-row">
+                            <strong>NH-GHAZI (65HP)</strong>
+                            <span>Farmer Share: Rs. 2,307,820</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="models" class="models-section">
+            <div class="section-header">
+                <h2 class="urdu-section-title">ہمارے ٹریکٹرز کے ماڈلز</h2>
+                <h3>Our Tractor Models</h3>
+                <p>Discover our range of heavy-duty, state-of-the-art tractors suitable for all agricultural needs.</p>
+            </div>
+
+            <div class="tractors-grid" id="tractors-container">
+                <!-- Cards will be injected by JS -->
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="about-section">
+            <div class="about-container">
+                <div class="about-content">
+                    <h2 class="urdu-section-title">ہمارے بارے میں</h2>
+                    <h3>About Cholistan Tractors</h3>
+                    <p>Cholistan Tractors is your trusted and authorized dealership for Al-Ghazi Tractors Ltd. With
+                        years of experience serving the agricultural community, we understand the needs of our farmers
+                        and provide top-quality machinery that ensures high yield and unmatched performance.</p>
+                    <p>We believe in building long-term relationships with our clients through exceptional customer
+                        service, transparent deals, and reliable after-sales support.</p>
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <h4>20+</h4>
+                            <p>Years Experience</p>
+                            <p class="urdu-text-small">سال کا تجربہ</p>
+                        </div>
+                        <div class="stat-box">
+                            <h4>1000+</h4>
+                            <p>Happy Farmers</p>
+                            <p class="urdu-text-small">خوشحال کسان</p>
+                        </div>
+                        <div class="stat-box">
+                            <h4>100%</h4>
+                            <p>Genuine Parts</p>
+                            <p class="urdu-text-small">اصلی پارٹس</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="glow-effect-bg"></div>
+                    <div class="image-placeholder glass-panel">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section id="features" class="features-section">
+            <div class="section-header">
+                <h2 class="urdu-section-title">ہمیں کیوں منتخب کریں؟</h2>
+                <h3>Why Choose Us?</h3>
+                <p>We provide the best agricultural solutions with a commitment to quality and service.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card glass-panel">
+                    <div class="feature-icon">🏅</div>
+                    <h4>Authorized Dealer</h4>
+                    <p class="urdu-text">مجاز ڈیلر</p>
+                    <p>Official partner of Al-Ghazi Tractors ensuring 100% genuine products.</p>
+                </div>
+                <div class="feature-card glass-panel">
+                    <div class="feature-icon">🛠️</div>
+                    <h4>Expert Support</h4>
+                    <p class="urdu-text">ماہرین کی مدد</p>
+                    <p>Professional mechanics and technical team available for maintenance.</p>
+                </div>
+                <div class="feature-card glass-panel">
+                    <div class="feature-icon">🤝</div>
+                    <h4>Easy Financing</h4>
+                    <p class="urdu-text">آسان فنانسنگ</p>
+                    <p>Flexible payment plans tailored to support our farming community.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- New: Customer Testimonials -->
+        <section id="testimonials" class="testimonials-section">
+            <div class="section-header">
+                <h2 class="urdu-section-title">گاہکوں کے تاثرات</h2>
+                <h3>Customer Testimonials</h3>
+                <p>Hear directly from the farmers across the nation who trust our machinery.</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-video-wrapper">
+                        <video class="testimonial-video" controls>
+                            <source
+                                src="https://www.alghazitractors.com/wp-content/uploads/2025/08/haji-ehsan-nh850-testimonial.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="testimonial-content">
+                        <h4>Haji Ehsan</h4>
+                        <p>New Holland 850 Owner</p>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-video-wrapper">
+                        <video class="testimonial-video" controls>
+                            <source
+                                src="https://www.alghazitractors.com/wp-content/uploads/2025/08/m-yousaf-850-testimonial.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="testimonial-content">
+                        <h4>M. Yousaf</h4>
+                        <p>New Holland 850 Owner</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal for Spec Sheet / More Info -->
+    <div id="specs-modal" class="modal">
+        <div class="modal-content glass-panel" style="max-width: 900px;">
+            <span class="close-specs-btn">&times;</span>
+            <div class="modal-header">
+                <h3 id="specs-modal-tractor-name">Tractor Specs</h3>
+                <p class="urdu-text" style="text-align: center;">مزید تفصیلی معلومات</p>
+            </div>
+            <!-- Dynamic Specs Grid Container -->
+            <div id="specs-data-container" class="specs-grid-container" style="margin-top: 20px;">
+                <!-- Content injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Booking -->
+    <div id="booking-modal" class="modal">
+        <div class="modal-content glass-panel">
+            <span class="close-btn">&times;</span>
+            <div class="modal-header">
+                <h3 id="modal-tractor-name">Tractor Model</h3>
+                <p class="urdu-text">مزید معلومات یا بکنگ کے لیے فارم پُر کریں</p>
+            </div>
+            <form id="booking-form">
+                <div class="input-group">
+                    <label for="name"><span>Full Name</span><span class="urdu">نام</span></label>
+                    <input type="text" id="name" required placeholder="Enter your full name">
+                </div>
+                <div class="input-group">
+                    <label for="phone"><span>Phone Number</span><span class="urdu">فون نمبر</span></label>
+                    <input type="tel" id="phone" required placeholder="e.g. 0300 1234567">
+                </div>
+                <div class="input-group">
+                    <label for="interest"><span>Interest</span><span class="urdu">دلچسپی</span></label>
+                    <select id="interest">
+                        <option value="book" class="urdu-text">Book Order (بکنگ)</option>
+                        <option value="info" class="urdu-text">More Information (مزید معلومات)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="message"><span>Message - Optional</span><span class="urdu">پیغام
+                            (اختیاری)</span></label>
+                    <textarea id="message" rows="3" placeholder="Any specific requirements..."></textarea>
+                </div>
+                <button type="submit" class="btn submit-btn">Submit Request</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact-us" class="contact-section" style="padding: 80px 5%; background-color: var(--bg-card);">
+        <div class="section-header">
+            <h2 class="urdu-section-title">رابطہ کریں</h2>
+            <h3>Contact Us</h3>
+            <p>Get in touch for inquiries, bookings, and more information.</p>
+        </div>
+        <div
+            style="max-width: 800px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 20px; box-shadow: var(--shadow-soft); border: 1px solid rgba(0,0,0,0.05);">
+            <form id="main-contact-form">
+                <div class="input-group">
+                    <label for="contact-name"><span>Full Name</span><span class="urdu">نام</span></label>
+                    <input type="text" id="contact-name" required placeholder="Enter your full name">
+                </div>
+                <div class="input-group">
+                    <label for="contact-phone"><span>Phone Number</span><span class="urdu">فون نمبر</span></label>
+                    <input type="tel" id="contact-phone" required placeholder="e.g. +92 68 5795666">
+                </div>
+                <div class="input-group">
+                    <label for="contact-message"><span>Message</span><span class="urdu">پیغام</span></label>
+                    <textarea id="contact-message" rows="5" required placeholder="How can we help you?"></textarea>
+                </div>
+                <button type="submit" class="btn primary-btn glow-effect" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer id="contact" class="modern-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">چولستان ٹریکٹرز | Cholistan Tractors</div>
+                <p>Your trusted, authorized dealership for Al-Ghazi Tractors Ltd. Delivering power to the fields of
+                    Pakistan since 2000.</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/itxmasterjee" target="_blank" class="social-icon"
+                        aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.19 5.96C15.26 5.96 16.38 6.15 16.38 6.15V8.56H15.15C13.93 8.56 13.56 9.31 13.56 10.09V12.06H16.27L15.84 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#models">Tractor Models</a></li>
+                    <li><a href="#scheme">Green Tractor Scheme</a></li>
+                    <li><a href="#about">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Contact Info</h4>
+                <p>📍 Railway road, Kachi Mandi, near MCB bank Liaquatpur</p>
+                <p style="display: flex; align-items: center; gap: 8px;">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"
+                        style="color: rgba(255,255,255,0.8);">
+                        <path
+                            d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                    </svg>
+                    <a href="tel:+92685795666" style="color: inherit; text-decoration: none;">+92 68 5795666</a>
+                </p>
+                <p style="display: flex; align-items: center; gap: 8px;">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" style="color: #25D366;">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884z" />
+                    </svg>
+                    <a href="https://wa.me/923008816859?text=Assalam%20o%20Alaikum!" target="_blank"
+                        style="color: inherit; text-decoration: none;">+92 300 8816859</a>
+                </p>
+                <p style="display: flex; align-items: center; gap: 8px;">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" style="color: #25D366;">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884z" />
+                    </svg>
+                    <a href="https://wa.me/923035019308?text=Assalam%20o%20Alaikum!" target="_blank"
+                        style="color: inherit; text-decoration: none;">+92 303 5019308</a>
+                </p>
+                <p>✉️ info@cholistantractors.com</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2003-<span id="current-year"></span> Cholistan Tractors. All rights reserved.</p>
+            <p class="dev-credit">
+                Developed with <span class="heart">❤️</span> by
+                <a href="https://www.facebook.com/itxmasterjee" target="_blank" class="dev-link">M Nadeem Akhtar</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Floating Action Buttons -->
+    <a href="https://wa.me/923035019308?text=Assalam%20o%20Alaikum!" target="_blank" class="fab-whatsapp"
+        id="fab-whatsapp" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884z" />
+        </svg>
+    </a>
+
+    <button class="fab-back-to-top" id="fab-back-to-top" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" />
+        </svg>
+    </button>
+
+    <script src="script.js?v=2"></script>
+</body>
+
+</html>
