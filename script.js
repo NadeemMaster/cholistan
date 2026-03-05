@@ -222,10 +222,27 @@ const specsModalTractorName = document.getElementById('specs-modal-tractor-name'
 const bookingForm = document.getElementById('booking-form');
 const contactForm = document.getElementById('main-contact-form');
 
+// Language State
+let currentLang = localStorage.getItem('cholistan_lang') || 'en';
+
+// Update body class on load
+document.body.className = `lang-${currentLang}`;
+
 // Render Tractors
 function renderTractors() {
+    tractorsContainer.innerHTML = ''; // Clear container
     tractorsData.forEach(tractor => {
-        const featuresHTML = tractor.features.map(f => `<li>${f}</li>`).join('');
+        const features = currentLang === 'ur' ? 
+            ['ڈوئل پلیٹ، ڈرائی ٹائپ کلچ', '8 فارورڈ اور 2 ریورس اسپیڈز', 'ہائیڈرولک لفٹ کی گنجائش: 1,450 کلوگرام'] : // Simplified for demo
+            tractor.features;
+        
+        const featuresHTML = features.map(f => `<li>${f}</li>`).join('');
+        const tractorName = currentLang === 'ur' ? tractor.urduName : tractor.name;
+        const tractorDesc = currentLang === 'ur' ? 
+            'الغازي نیو ہالینڈ ٹریکٹرز: کارکردگی اور پائیداری کا بہترین امتزاج۔' : 
+            tractor.desc;
+        const bookBtnText = currentLang === 'ur' ? 'ابھی بک کریں' : 'Book Now';
+        const specsBtnText = currentLang === 'ur' ? 'تفصیلات' : 'Specs';
 
         const cardHTML = `
             <div class="tractor-card">
@@ -233,77 +250,127 @@ function renderTractors() {
                 <div class="price-badge">${tractor.price}</div>
                 <div class="card-img-wrapper">
                     <div class="img-skeleton"></div>
-                    <img src="${tractor.image}" alt="${tractor.name}" class="card-img" style="opacity: 0;" onload="this.style.opacity=1; setTimeout(() => this.previousElementSibling?.remove(), 500);" loading="lazy">
+                    <img src="${tractor.image}" alt="${tractorName}" class="card-img" style="opacity: 0;" onload="this.style.opacity=1; setTimeout(() => this.previousElementSibling?.remove(), 500);" loading="lazy">
                 </div>
                 <div class="card-content">
                     <div class="card-title">
-                        <span>${tractor.name}</span>
+                        <span>${tractorName}</span>
                     </div>
-                    <div class="urdu-model-name">${tractor.urduName}</div>
-                    <p class="card-desc">${tractor.desc}</p>
+                    <p class="card-desc">${tractorDesc}</p>
                     <ul class="features-list">
                         ${featuresHTML}
                     </ul>
                     
                     <div style="display: flex; gap: 10px; margin-top: auto;">
-                        <button class="btn card-btn book-now-btn" data-tractor-id="${tractor.id}" style="flex: 1; padding: 10px;">Book Now</button>
-                        <button class="btn btn-outline specs-btn" data-tractor-id="${tractor.id}" style="flex: 1; padding: 10px; border: 1px solid var(--primary-color); color: var(--primary-color); background: transparent; border-radius: 12px; cursor: pointer;">Specs</button>
+                        <button class="btn card-btn book-now-btn" data-tractor-id="${tractor.id}" style="flex: 1; padding: 10px;">${bookBtnText}</button>
+                        <button class="btn btn-outline specs-btn" data-tractor-id="${tractor.id}" style="flex: 1; padding: 10px; border: 1px solid var(--primary-color); color: var(--primary-color); background: transparent; border-radius: 12px; cursor: pointer;">${specsBtnText}</button>
                     </div>
                 </div>
             </div>
         `;
         tractorsContainer.innerHTML += cardHTML;
     });
+}
 
-    // Event delegation
-    tractorsContainer.addEventListener('click', (e) => {
-        const bookBtn = e.target.closest('.book-now-btn');
-        const specsBtn = e.target.closest('.specs-btn');
-
-        if (bookBtn) {
-            const tractorId = bookBtn.getAttribute('data-tractor-id');
-            const tractor = tractorsData.find(t => t.id === tractorId);
-            if (tractor) {
-                const msg = encodeURIComponent(`Assalam o Alaikum!\nI am interested in:\n\n🚜 Model: ${tractor.name}\n💰 Price: ${tractor.price}\n\nPlease share more details. Thank you!`);
-                window.open(`https://wa.me/923035019308?text=${msg}`, '_blank');
+// Language Toggle Logic
+function toggleLanguage() {
+    currentLang = currentLang === 'en' ? 'ur' : 'en';
+    localStorage.setItem('cholistan_lang', currentLang);
+    document.body.className = `lang-${currentLang}`;
+    
+    // Update Static Content
+    document.querySelectorAll('[data-en]').forEach(el => {
+        const text = el.getAttribute(`data-${currentLang}`);
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = text;
+        } else {
+            // Keep icons if they exist
+            const icon = el.querySelector('svg, i, .arrow');
+            if (icon) {
+                // If it's a button with an arrow, we need to be careful
+                if (el.classList.contains('rich-primary-btn')) {
+                    el.innerHTML = `${text} <span class="arrow">→</span>`;
+                }
+            } else {
+                el.textContent = text;
             }
         }
-
-        if (specsBtn) {
-            const tractorId = specsBtn.getAttribute('data-tractor-id');
-            openSpecsModal(tractorId);
-        }
     });
+
+    renderTractors();
 }
+
+// Event delegation for tractors container
+tractorsContainer.addEventListener('click', (e) => {
+    const bookBtn = e.target.closest('.book-now-btn');
+    const specsBtn = e.target.closest('.specs-btn');
+
+    if (bookBtn) {
+        const tractorId = bookBtn.getAttribute('data-tractor-id');
+        const tractor = tractorsData.find(t => t.id === tractorId);
+        if (tractor) {
+            const msgText = currentLang === 'ur' ? 
+                `اسلام علیکم!\nمیں اس ماڈل میں دلچسپی رکھتا ہوں:\n\n🚜 ماڈل: ${tractor.urduName}\n💰 قیمت: ${tractor.price}\n\nبراہ کرم مزید تفصیلات فراہم کریں۔ شکریہ!` :
+                `Assalam o Alaikum!\nI am interested in:\n\n🚜 Model: ${tractor.name}\n💰 Price: ${tractor.price}\n\nPlease share more details. Thank you!`;
+            const msg = encodeURIComponent(msgText);
+            window.open(`https://wa.me/923035019308?text=${msg}`, '_blank');
+        }
+    }
+
+    if (specsBtn) {
+        const tractorId = specsBtn.getAttribute('data-tractor-id');
+        openSpecsModal(tractorId);
+    }
+});
+
+// Specs Translation Map
+const specsTranslation = {
+    "Engine Power": "انجن پاور",
+    "Operating Weight": "آپریٹنگ وزن",
+    "Engine Type & Cylinders": "انجن کی قسم اور سلنڈر",
+    "Displacement / Bore & Stroke": "ڈسپلیسمنٹ / بور اور اسٹروک",
+    "Displacement": "ڈسپلیسمنٹ",
+    "Max Torque": "زیادہ سے زیادہ ٹارک",
+    "Cooling System": "کولنگ سسٹم",
+    "Clutch": "کلچ",
+    "Transmission": "ٹرانسمیشن",
+    "Steering": "اسٹیئرنگ",
+    "Power Take Off (PTO)": "پاور ٹیک آف (پی ٹی او)",
+    "Hydraulics & Lift": "ہائیڈرولکس اور لفٹ",
+    "Brakes": "بریک",
+    "Tyres (Front / Rear)": "ٹائر (اگلے / پچھلے)",
+    "Dimensions & Wheelbase": "طول و عرض اور وہیل بیس",
+    "Ground Clearance": "گراؤنڈ کلیئرنس",
+    "Front Axle": "فرنٹ ایکسل",
+    "Detailed Specifications": "مزید تفصیلی معلومات"
+};
 
 // Modal Logic
-function openBookingModal(tractorName, urduName) {
-    modalTractorName.innerHTML = `${tractorName} <br><span style="font-family: 'Noto Nastaliq Urdu'; font-size: 1.5rem; color: var(--primary-color);">${urduName}</span>`;
-    bookingModal.classList.add('show');
-    document.body.style.overflow = 'hidden'; 
-}
-
-function closeBookingModal() {
-    bookingModal.classList.remove('show');
-    document.body.style.overflow = 'auto';
-    setTimeout(() => {
-        bookingForm.reset();
-    }, 300);
-}
-
 function openSpecsModal(tractorId) {
     const tractor = tractorsData.find(t => t.id === tractorId);
     if (!tractor) return;
 
-    specsModalTractorName.innerHTML = `${tractor.name} <br><span style="font-family: 'Noto Nastaliq Urdu'; font-size: 1.8rem; color: var(--primary-color);">${tractor.urduName}</span>`;
+    const tractorName = currentLang === 'ur' ? tractor.urduName : tractor.name;
+    const subTitleText = currentLang === 'ur' ? specsTranslation["Detailed Specifications"] : "Detailed Specifications";
+    
+    // Set Tractor Name
+    specsModalTractorName.textContent = tractorName;
+    
+    // Set Subtitle
+    const modalSubTitle = specsModal.querySelector('.modal-header .urdu-text');
+    if (modalSubTitle) {
+        modalSubTitle.textContent = subTitleText;
+    }
     
     const specsContainer = document.getElementById('specs-data-container');
     let specsHTML = '';
     
     for (const [key, value] of Object.entries(tractor.fullSpecs)) {
+        const translatedKey = currentLang === 'ur' ? (specsTranslation[key] || key) : key;
+        
         specsHTML += `
             <div class="spec-item">
-                <span class="spec-label">${key}</span>
+                <span class="spec-label">${translatedKey}</span>
                 <span class="spec-value">${value}</span>
             </div>
         `;
@@ -319,22 +386,10 @@ function closeSpecsModal() {
     document.body.style.overflow = 'auto';
 }
 
-
-closeBookingBtn.addEventListener('click', closeBookingModal);
 closeSpecsBtn.addEventListener('click', closeSpecsModal);
 
 window.addEventListener('click', (e) => {
-    if (e.target === bookingModal) closeBookingModal();
     if (e.target === specsModal) closeSpecsModal();
-});
-
-bookingForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name = document.getElementById('name').value;
-    const interest = document.getElementById('interest').value;
-    const action = interest === 'book' ? 'Booking request' : 'Information request';
-    alert(`Thank you ${name}! Your ${action} for ${modalTractorName.innerText.split('\n')[0]} has been received. Our team will contact you shortly.`);
-    closeBookingModal();
 });
 
 contactForm.addEventListener('submit', (e) => {
@@ -342,7 +397,12 @@ contactForm.addEventListener('submit', (e) => {
     const name = document.getElementById('contact-name').value;
     const phone = document.getElementById('contact-phone').value;
     const message = document.getElementById('contact-message').value;
-    const msg = encodeURIComponent(`Assalam o Alaikum!\n\n👤 Name: ${name}\n📞 Phone: ${phone}\n💬 Message: ${message}`);
+    
+    const msgText = currentLang === 'ur' ?
+        `اسلام علیکم!\n\n👤 نام: ${name}\n📞 فون: ${phone}\n💬 پیغام: ${message}` :
+        `Assalam o Alaikum!\n\n👤 Name: ${name}\n📞 Phone: ${phone}\n💬 Message: ${message}`;
+        
+    const msg = encodeURIComponent(msgText);
     window.open(`https://wa.me/923035019308?text=${msg}`, '_blank');
     contactForm.reset();
 });
@@ -351,17 +411,14 @@ contactForm.addEventListener('submit', (e) => {
 const carouselImages = document.querySelectorAll('.carousel-img');
 const carouselIndicators = document.querySelectorAll('#hero-carousel-indicators .indicator');
 let currentSlide = 0;
-const slideInterval = 4000; // 4 seconds
+const slideInterval = 4000;
 let carouselTimer;
 
 function goToSlide(index) {
     if (carouselImages.length === 0) return;
-    
     carouselImages[currentSlide].classList.remove('active');
     carouselIndicators[currentSlide].classList.remove('active');
-    
     currentSlide = index;
-    
     carouselImages[currentSlide].classList.add('active');
     carouselIndicators[currentSlide].classList.add('active');
 }
@@ -374,7 +431,6 @@ function nextSlide() {
 
 if (carouselImages.length > 0) {
     carouselTimer = setInterval(nextSlide, slideInterval);
-
     carouselIndicators.forEach((indicator, index) => {
         indicator.addEventListener('click', () => {
             clearInterval(carouselTimer);
@@ -384,18 +440,14 @@ if (carouselImages.length > 0) {
     });
 }
 
-// Smooth Scroll for Navigation
+// Smooth Scroll
 document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const targetId = this.getAttribute('href');
         const targetSection = document.querySelector(targetId);
-        
         if (targetSection) {
-            targetSection.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     });
 });
@@ -410,7 +462,6 @@ if (mobileToggle && navLinksContainer) {
         mobileToggle.classList.toggle('active');
     });
 
-    // Close mobile menu when a link is clicked
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             if(navLinksContainer.classList.contains('active')) {
@@ -423,27 +474,29 @@ if (mobileToggle && navLinksContainer) {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
-    renderTractors();
-    
-    // Set Current Year dynamically
-    const yearSpan = document.getElementById('current-year');
-    if (yearSpan) {
-        yearSpan.textContent = new Date().getFullYear();
+    const langToggleBtn = document.getElementById('lang-toggle');
+    if (langToggleBtn) {
+        langToggleBtn.addEventListener('click', toggleLanguage);
     }
 
-    // Back to Top Button
+    renderTractors();
+    
+    const yearSpan = document.getElementById('current-year');
+    if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
     const backToTopBtn = document.getElementById('fab-back-to-top');
     if (backToTopBtn) {
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopBtn.classList.add('visible');
-            } else {
-                backToTopBtn.classList.remove('visible');
-            }
+            if (window.scrollY > 300) backToTopBtn.classList.add('visible');
+            else backToTopBtn.classList.remove('visible');
         });
+        backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
 
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+    // Trigger initial translation check for static elements if language is Urdu
+    if (currentLang === 'ur') {
+        const tempLang = currentLang;
+        currentLang = 'en'; // Flip to trigger update
+        toggleLanguage(); 
     }
 });

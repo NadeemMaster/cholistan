@@ -15,9 +15,9 @@
     <nav class="navbar light-nav">
         <div class="nav-header">
             <div class="logo">
-                <span class="urdu-logo">چولستان ٹریکٹرز</span>
+                <span class="ur-only urdu-logo">چولستان ٹریکٹرز</span>
                 <span class="logo-separator">|</span>
-                <span class="eng-logo">Cholistan Tractors</span>
+                <span class="en-only eng-logo">Cholistan Tractors</span>
             </div>
             <div class="mobile-toggle" id="mobile-toggle">
                 <span></span>
@@ -26,13 +26,19 @@
             </div>
         </div>
         <ul class="nav-links" id="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#models">Models</a></li>
-            <li><a href="#scheme">Green Scheme</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
-            <li><a href="#contact-us">Contact</a></li>
+            <li><a href="#home" data-en="Home" data-ur="ہوم">Home</a></li>
+            <li><a href="#about" data-en="About" data-ur="ہمارے بارے میں">About</a></li>
+            <li><a href="#models" data-en="Models" data-ur="ماڈلز">Models</a></li>
+            <li><a href="#scheme" data-en="Green Scheme" data-ur="گرین اسکیم">Green Scheme</a></li>
+            <li><a href="#features" data-en="Features" data-ur="خصوصیات">Features</a></li>
+            <li><a href="#testimonials" data-en="Testimonials" data-ur="تاثرات">Testimonials</a></li>
+            <li><a href="#contact-us" data-en="Contact" data-ur="رابطہ">Contact</a></li>
+            <li class="lang-switch-item">
+                <button id="lang-toggle" class="lang-btn">
+                    <span class="en-label">UR</span>
+                    <span class="ur-label">EN</span>
+                </button>
+            </li>
         </ul>
     </nav>
 
@@ -41,27 +47,34 @@
             <div class="hero-text">
                 <div class="hero-badge">🚜 Premium Agricultural Machinery</div>
                 <h1 class="eng-hero-title">
-                    Powering The <br>
-                    <span class="text-gradient">Future Of Farming</span>
+                    <span data-en="Powering The" data-ur="کاشتکاری کے">Powering The</span> <br>
+                    <span class="text-gradient" data-en="Future Of Farming" data-ur="مستقبل کی طاقت">Future Of
+                        Farming</span>
                 </h1>
                 <h2 class="urdu-hero-title" dir="rtl">چولستان ٹریکٹرز میں خوش آمدید</h2>
-                <p class="hero-description">Your trusted partner for Al-Ghazi New Holland tractors. We deliver unmatched
+                <p class="hero-description"
+                    data-en="Your trusted partner for Al-Ghazi New Holland tractors. We deliver unmatched performance, uncompromising durability, and absolute reliability for every field."
+                    data-ur="الغازي نیو ہالینڈ ٹریکٹرز کے لیے آپ کا قابل اعتماد شراکت دار۔ ہم ہر کھیت کے لیے بے مثال کارکردگی، سمجھوتہ نہ کرنے والی پائیداری، اور مکمل بھروسہ فراہم کرتے ہیں۔">
+                    Your trusted partner for Al-Ghazi New Holland tractors. We deliver unmatched
                     performance, uncompromising durability, and absolute reliability for every field.</p>
 
                 <div class="hero-actions">
-                    <a href="#models" class="btn rich-primary-btn">Explore Models <span class="arrow">→</span></a>
-                    <a href="#scheme" class="btn rich-secondary-btn">Green Scheme</a>
+                    <a href="#models" class="btn rich-primary-btn"><span data-en="Explore Models"
+                            data-ur="ماڈلز دیکھیں">Explore Models</span> <span class="arrow">→</span></a>
+                    <a href="#scheme" class="btn rich-secondary-btn" data-en="Green Scheme" data-ur="گرین اسکیم">Green
+                        Scheme</a>
                 </div>
 
                 <div class="hero-stats-row">
                     <div class="h-stat">
                         <span class="stat-number">20+</span>
-                        <span class="stat-label">Years Experience</span>
+                        <span class="stat-label" data-en="Years Experience" data-ur="سال کا تجربہ">Years
+                            Experience</span>
                     </div>
                     <div class="divider"></div>
                     <div class="h-stat">
                         <span class="stat-number">100%</span>
-                        <span class="stat-label">Genuine Parts</span>
+                        <span class="stat-label" data-en="Genuine Parts" data-ur="اصلی پارٹس">Genuine Parts</span>
                     </div>
                 </div>
             </div>
@@ -101,16 +114,17 @@
                     <div class="floating-glass-card top-left-float">
                         <div class="f-icon">🏆</div>
                         <div class="f-text">
-                            <strong>Authorized Dealer</strong>
-                            <span>Al-Ghazi Tractors Ltd</span>
+                            <strong data-en="Authorized Dealer" data-ur="مجاز ڈیلر">Authorized Dealer</strong>
+                            <span data-en="Al-Ghazi Tractors Ltd" data-ur="الغازي ٹریکٹرز لمیٹڈ">Al-Ghazi Tractors
+                                Ltd</span>
                         </div>
                     </div>
 
                     <div class="floating-glass-card bottom-right-float">
                         <div class="f-icon">💯</div>
                         <div class="f-text">
-                            <strong>Reliable Service</strong>
-                            <span>24/7 Support</span>
+                            <strong data-en="Reliable Service" data-ur="قابل اعتماد سروس">Reliable Service</strong>
+                            <span data-en="24/7 Support" data-ur="24/7 سپورٹ">24/7 Support</span>
                         </div>
                     </div>
                 </div>
@@ -122,9 +136,11 @@
         <!-- New: Green Tractor Scheme Section -->
         <section id="scheme" class="scheme-section">
             <div class="section-header">
-                <h2 class="urdu-section-title">پنجاب گرین ٹریکٹر سکیم</h2>
-                <h3>CM Green Tractor Scheme Phase 3</h3>
-                <p>A phenomenal initiative providing a flat Rs. 500,000 subsidy per eligible tractor.</p>
+                <h3 class="section-title" data-en="Chief Minister Punjab Green Tractor Scheme"
+                    data-ur="وزیراعلیٰ پنجاب گرین ٹریکٹر سکیم">Chief Minister Punjab Green Tractor Scheme</h3>
+                <p data-en="A phenomenal initiative providing a flat Rs. 500,000 subsidy per eligible tractor."
+                    data-ur="ایک شاندار اقدام جو ہر اہل ٹریکٹر پر 500,000 روپے کی رعایت فراہم کرتا ہے۔">A phenomenal
+                    initiative providing a flat Rs. 500,000 subsidy per eligible tractor.</p>
             </div>
 
             <div class="scheme-container">
@@ -137,23 +153,30 @@
                     </video>
                 </div>
                 <div class="scheme-content">
-                    <div class="subsidy-badge">Subsidy Valid: Rs. 500,000</div>
-                    <p class="scheme-desc">Take advantage of the monumental Chief Minister Punjab Green Tractor Scheme
+                    <div class="subsidy-badge" data-en="Subsidy Valid: Rs. 500,000" data-ur="سبسڈی: 500,000 روپے">
+                        Subsidy Valid: Rs. 500,000</div>
+                    <p class="scheme-desc"
+                        data-en="Take advantage of the monumental Chief Minister Punjab Green Tractor Scheme Phase 3. The government has allocated 10,000 tractors providing a flat, direct subsidy of Rs. 500,000 per tractor to eligible farmers."
+                        data-ur="وزیراعلیٰ پنجاب گرین ٹریکٹر سکیم فیز 3 سے فائدہ اٹھائیں۔ حکومت نے 10,000 ٹریکٹر مختص کیے ہیں جو اہل کسانوں کو فی ٹریکٹر 500,000 روپے کی براہ راست سبسڈی فراہم کرتے ہیں۔">
+                        Take advantage of the monumental Chief Minister Punjab Green Tractor Scheme
                         Phase 3. The government has allocated 10,000 tractors providing a flat, direct subsidy of Rs.
                         500,000 per tractor to eligible farmers.</p>
 
                     <div class="scheme-pricing">
                         <div class="scheme-price-row">
                             <strong>NH-480S (55HP)</strong>
-                            <span>Farmer Share: Rs. 1,928,200</span>
+                            <span data-en="Farmer Share: Rs. 1,928,200" data-ur="کسان کا حصہ: 1,928,200 روپے">Farmer
+                                Share: Rs. 1,928,200</span>
                         </div>
                         <div class="scheme-price-row">
                             <strong>NH-480PP (55HP)</strong>
-                            <span>Farmer Share: Rs. 2,022,820</span>
+                            <span data-en="Farmer Share: Rs. 2,022,820" data-ur="کسان کا حصہ: 2,022,820 روپے">Farmer
+                                Share: Rs. 2,022,820</span>
                         </div>
                         <div class="scheme-price-row">
                             <strong>NH-GHAZI (65HP)</strong>
-                            <span>Farmer Share: Rs. 2,307,820</span>
+                            <span data-en="Farmer Share: Rs. 2,307,820" data-ur="کسان کا حصہ: 2,307,820 روپے">Farmer
+                                Share: Rs. 2,307,820</span>
                         </div>
                     </div>
                 </div>
@@ -162,9 +185,11 @@
 
         <section id="models" class="models-section">
             <div class="section-header">
-                <h2 class="urdu-section-title">ہمارے ٹریکٹرز کے ماڈلز</h2>
-                <h3>Our Tractor Models</h3>
-                <p>Discover our range of heavy-duty, state-of-the-art tractors suitable for all agricultural needs.</p>
+                <h3 class="section-title" data-en="Our Tractor Models" data-ur="ہمارے ٹریکٹرز کے ماڈلز">Our Tractor
+                    Models</h3>
+                <p data-en="Discover our range of heavy-duty, state-of-the-art tractors suitable for all agricultural needs."
+                    data-ur="تمام زرعی ضروریات کے لیے موزوں ہمارے ہیوی ڈیوٹی ٹریکٹرز کی رینج دریافت کریں۔">Discover our
+                    range of heavy-duty, state-of-the-art tractors suitable for all agricultural needs.</p>
             </div>
 
             <div class="tractors-grid" id="tractors-container">
@@ -176,28 +201,29 @@
         <section id="about" class="about-section">
             <div class="about-container">
                 <div class="about-content">
-                    <h2 class="urdu-section-title">ہمارے بارے میں</h2>
-                    <h3>About Cholistan Tractors</h3>
-                    <p>Cholistan Tractors is your trusted and authorized dealership for Al-Ghazi Tractors Ltd. With
+                    <h3 class="section-title" data-en="About Cholistan Tractors" data-ur="ہمارے بارے میں">About
+                        Cholistan Tractors</h3>
+                    <p data-en="Cholistan Tractors is your trusted and authorized dealership for Al-Ghazi Tractors Ltd. With years of experience serving the agricultural community, we understand the needs of our farmers and provide top-quality machinery that ensures high yield and unmatched performance."
+                        data-ur="چولستان ٹریکٹرز الغازی ٹریکٹرز لمیٹڈ کے لیے آپ کا قابل اعتماد اور مجاز ڈیلر ہے۔ زرعی برادری کی خدمت کے سالوں کے تجربے کے ساتھ، ہم اپنے کسانوں کی ضروریات کو سمجھتے ہیں اور اعلیٰ معیار کی مشینری فراہم کرتے ہیں جو زیادہ پیداوار اور بے مثال کارکردگی کو یقینی بناتی ہے۔">
+                        Cholistan Tractors is your trusted and authorized dealership for Al-Ghazi Tractors Ltd. With
                         years of experience serving the agricultural community, we understand the needs of our farmers
                         and provide top-quality machinery that ensures high yield and unmatched performance.</p>
-                    <p>We believe in building long-term relationships with our clients through exceptional customer
+                    <p data-en="We believe in building long-term relationships with our clients through exceptional customer service, transparent deals, and reliable after-sales support."
+                        data-ur="ہم غیر معمولی کسٹمر سروس، شفاف سودوں اور قابل اعتماد فروخت کے بعد سپورٹ کے ذریعے اپنے کلائنٹس کے ساتھ طویل مدتی تعلقات استوار کرنے پر یقین رکھتے ہیں۔">
+                        We believe in building long-term relationships with our clients through exceptional customer
                         service, transparent deals, and reliable after-sales support.</p>
                     <div class="stats-grid">
                         <div class="stat-box">
-                            <h4>20+</h4>
-                            <p>Years Experience</p>
-                            <p class="urdu-text-small">سال کا تجربہ</p>
+                            <h4 data-en="20+" data-ur="20+">20+</h4>
+                            <p data-en="Years Experience" data-ur="سال کا تجربہ">Years Experience</p>
                         </div>
                         <div class="stat-box">
-                            <h4>1000+</h4>
-                            <p>Happy Farmers</p>
-                            <p class="urdu-text-small">خوشحال کسان</p>
+                            <h4 data-en="1000+" data-ur="1000+">1000+</h4>
+                            <p data-en="Happy Farmers" data-ur="خوشحال کسان">Happy Farmers</p>
                         </div>
                         <div class="stat-box">
-                            <h4>100%</h4>
-                            <p>Genuine Parts</p>
-                            <p class="urdu-text-small">اصلی پارٹس</p>
+                            <h4 data-en="100%" data-ur="100%">100%</h4>
+                            <p data-en="Genuine Parts" data-ur="اصلی پارٹس">Genuine Parts</p>
                         </div>
                     </div>
                 </div>
@@ -212,29 +238,33 @@
         <!-- Why Choose Us Section -->
         <section id="features" class="features-section">
             <div class="section-header">
-                <h2 class="urdu-section-title">ہمیں کیوں منتخب کریں؟</h2>
-                <h3>Why Choose Us?</h3>
-                <p>We provide the best agricultural solutions with a commitment to quality and service.</p>
+                <h3 class="section-title" data-en="Why Choose Us?" data-ur="ہمیں کیوں منتخب کریں؟">Why Choose Us?</h3>
+                <p data-en="We provide the best agricultural solutions with a commitment to quality and service."
+                    data-ur="ہم معیار اور خدمت کے عزم کے ساتھ بہترین زرعی حل فراہم کرتے ہیں۔">We provide the best
+                    agricultural solutions with a commitment to quality and service.</p>
             </div>
 
             <div class="features-grid">
                 <div class="feature-card glass-panel">
                     <div class="feature-icon">🏅</div>
-                    <h4>Authorized Dealer</h4>
-                    <p class="urdu-text">مجاز ڈیلر</p>
-                    <p>Official partner of Al-Ghazi Tractors ensuring 100% genuine products.</p>
+                    <h4 data-en="Authorized Dealer" data-ur="مجاز ڈیلر">Authorized Dealer</h4>
+                    <p data-en="Official partner of Al-Ghazi Tractors ensuring 100% genuine products."
+                        data-ur="الغازي ٹریکٹرز کے آفیشل پارٹنر جو 100٪ اصلی مصنوعات کو یقینی بناتے ہیں۔">Official
+                        partner of Al-Ghazi Tractors ensuring 100% genuine products.</p>
                 </div>
                 <div class="feature-card glass-panel">
                     <div class="feature-icon">🛠️</div>
-                    <h4>Expert Support</h4>
-                    <p class="urdu-text">ماہرین کی مدد</p>
-                    <p>Professional mechanics and technical team available for maintenance.</p>
+                    <h4 data-en="Expert Support" data-ur="ماہرین کی مدد">Expert Support</h4>
+                    <p data-en="Professional mechanics and technical team available for maintenance."
+                        data-ur="دیکھ بھال کے لیے پیشہ ور مکینکس اور تکنیکی ٹیم دستیاب ہے۔">Professional mechanics and
+                        technical team available for maintenance.</p>
                 </div>
                 <div class="feature-card glass-panel">
                     <div class="feature-icon">🤝</div>
-                    <h4>Easy Financing</h4>
-                    <p class="urdu-text">آسان فنانسنگ</p>
-                    <p>Flexible payment plans tailored to support our farming community.</p>
+                    <h4 data-en="Easy Financing" data-ur="آسان فنانسنگ">Easy Financing</h4>
+                    <p data-en="Flexible payment plans tailored to support our farming community."
+                        data-ur="ہماری کاشتکار برادری کی مدد کے لیے تیار کردہ لچکدار ادائیگی کے منصوبے۔">Flexible
+                        payment plans tailored to support our farming community.</p>
                 </div>
             </div>
         </section>
@@ -242,9 +272,11 @@
         <!-- New: Customer Testimonials -->
         <section id="testimonials" class="testimonials-section">
             <div class="section-header">
-                <h2 class="urdu-section-title">گاہکوں کے تاثرات</h2>
-                <h3>Customer Testimonials</h3>
-                <p>Hear directly from the farmers across the nation who trust our machinery.</p>
+                <h3 class="section-title" data-en="Customer Testimonials" data-ur="گاہکوں کے تاثرات">Customer
+                    Testimonials</h3>
+                <p data-en="Hear directly from the farmers across the nation who trust our machinery."
+                    data-ur="ملک بھر کے ان کسانوں سے براہ راست سنیں جو ہماری مشینری پر بھروسہ کرتے ہیں۔">Hear directly
+                    from the farmers across the nation who trust our machinery.</p>
             </div>
 
             <div class="testimonials-grid">
@@ -285,8 +317,8 @@
         <div class="modal-content glass-panel" style="max-width: 900px;">
             <span class="close-specs-btn">&times;</span>
             <div class="modal-header">
-                <h3 id="specs-modal-tractor-name">Tractor Specs</h3>
-                <p class="urdu-text" style="text-align: center;">مزید تفصیلی معلومات</p>
+                <h3 id="specs-modal-tractor-name" class="section-title">Tractor Specs</h3>
+                <p class="urdu-text" style="text-align: center; font-size: 1.1rem; margin-top: -10px;"></p>
             </div>
             <!-- Dynamic Specs Grid Container -->
             <div id="specs-data-container" class="specs-grid-container" style="margin-top: 20px;">
@@ -301,30 +333,36 @@
             <span class="close-btn">&times;</span>
             <div class="modal-header">
                 <h3 id="modal-tractor-name">Tractor Model</h3>
-                <p class="urdu-text">مزید معلومات یا بکنگ کے لیے فارم پُر کریں</p>
+                <p class="urdu-text" data-en="Please fill the form for more information or booking"
+                    data-ur="مزید معلومات یا بکنگ کے لیے فارم پُر کریں">Please fill the form for more information or
+                    booking</p>
             </div>
             <form id="booking-form">
                 <div class="input-group">
-                    <label for="name"><span>Full Name</span><span class="urdu">نام</span></label>
-                    <input type="text" id="name" required placeholder="Enter your full name">
+                    <label for="name" data-en="Full Name" data-ur="مکمل نام">Full Name</label>
+                    <input type="text" id="name" required placeholder="Enter your full name"
+                        data-en="Enter your full name" data-ur="اپنا مکمل نام درج کریں">
                 </div>
                 <div class="input-group">
-                    <label for="phone"><span>Phone Number</span><span class="urdu">فون نمبر</span></label>
-                    <input type="tel" id="phone" required placeholder="e.g. 0300 1234567">
+                    <label for="phone" data-en="Phone Number" data-ur="فون نمبر">Phone Number</label>
+                    <input type="tel" id="phone" required placeholder="e.g. 0300 1234567" data-en="e.g. 0300 1234567"
+                        data-ur="مثال: 03001234567">
                 </div>
                 <div class="input-group">
-                    <label for="interest"><span>Interest</span><span class="urdu">دلچسپی</span></label>
+                    <label for="interest" data-en="Interest" data-ur="دلچسپی">Interest</label>
                     <select id="interest">
-                        <option value="book" class="urdu-text">Book Order (بکنگ)</option>
-                        <option value="info" class="urdu-text">More Information (مزید معلومات)</option>
+                        <option value="book" data-en="Book Order" data-ur="بکنگ آرڈر">Book Order</option>
+                        <option value="info" data-en="More Information" data-ur="مزید معلومات">More Information</option>
                     </select>
                 </div>
                 <div class="input-group">
-                    <label for="message"><span>Message - Optional</span><span class="urdu">پیغام
-                            (اختیاری)</span></label>
-                    <textarea id="message" rows="3" placeholder="Any specific requirements..."></textarea>
+                    <label for="message" data-en="Message - Optional" data-ur="پیغام (اختیاری)">Message -
+                        Optional</label>
+                    <textarea id="message" rows="3" placeholder="Any specific requirements..."
+                        data-en="Any specific requirements..." data-ur="کوئی خاص ضروریات..."></textarea>
                 </div>
-                <button type="submit" class="btn submit-btn">Submit Request</button>
+                <button type="submit" class="btn submit-btn" data-en="Submit Request"
+                    data-ur="درخواست جمع کروائیں">Submit Request</button>
             </form>
         </div>
     </div>
@@ -332,26 +370,31 @@
     <!-- Contact Section -->
     <section id="contact-us" class="contact-section" style="padding: 80px 5%; background-color: var(--bg-card);">
         <div class="section-header">
-            <h2 class="urdu-section-title">رابطہ کریں</h2>
-            <h3>Contact Us</h3>
-            <p>Get in touch for inquiries, bookings, and more information.</p>
+            <h3 class="section-title" data-en="Contact Us" data-ur="رابطہ کریں">Contact Us</h3>
+            <p data-en="Get in touch for inquiries, bookings, and more information."
+                data-ur="انکوائری، بکنگ اور مزید معلومات کے لیے رابطہ کریں۔">Get in touch for inquiries, bookings, and
+                more information.</p>
         </div>
         <div
             style="max-width: 800px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 20px; box-shadow: var(--shadow-soft); border: 1px solid rgba(0,0,0,0.05);">
             <form id="main-contact-form">
                 <div class="input-group">
-                    <label for="contact-name"><span>Full Name</span><span class="urdu">نام</span></label>
-                    <input type="text" id="contact-name" required placeholder="Enter your full name">
+                    <label for="contact-name" data-en="Full Name" data-ur="مکمل نام">Full Name</label>
+                    <input type="text" id="contact-name" required placeholder="Enter your full name"
+                        data-en="Enter your full name" data-ur="اپنا مکمل نام درج کریں">
                 </div>
                 <div class="input-group">
-                    <label for="contact-phone"><span>Phone Number</span><span class="urdu">فون نمبر</span></label>
-                    <input type="tel" id="contact-phone" required placeholder="e.g. +92 68 5795666">
+                    <label for="contact-phone" data-en="Phone Number" data-ur="فون نمبر">Phone Number</label>
+                    <input type="tel" id="contact-phone" required placeholder="e.g. +92 68 5795666"
+                        data-en="e.g. +92 68 5795666" data-ur="مثال: +92685795666">
                 </div>
                 <div class="input-group">
-                    <label for="contact-message"><span>Message</span><span class="urdu">پیغام</span></label>
-                    <textarea id="contact-message" rows="5" required placeholder="How can we help you?"></textarea>
+                    <label for="contact-message" data-en="Message" data-ur="پیغام">Message</label>
+                    <textarea id="contact-message" rows="5" required placeholder="How can we help you?"
+                        data-en="How can we help you?" data-ur="ہم آپ کی کیا مدد کر سکتے ہیں؟"></textarea>
                 </div>
-                <button type="submit" class="btn primary-btn glow-effect" style="width: 100%;">Send Message</button>
+                <button type="submit" class="btn primary-btn glow-effect" style="width: 100%;" data-en="Send Message"
+                    data-ur="پیغام بھیجیں">Send Message</button>
             </form>
         </div>
     </section>
