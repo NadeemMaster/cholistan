@@ -14,6 +14,9 @@ export default function DashboardLayout({
           <a href="/dashboard" className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
             Overview
           </a>
+          <a href="/dashboard/bookings" className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
+            Bookings
+          </a>
           <a href="/dashboard/customers" className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
             Customers
           </a>
