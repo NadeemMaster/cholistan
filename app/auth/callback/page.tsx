@@ -11,7 +11,7 @@ export default function AuthCallbackPage() {
   useEffect(() => {
     // 1. Listen for the implicit grant hash parsing
     const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-      if (event === 'SIGNED_IN' && session) {
+      if ((event === 'SIGNED_IN' || event === 'INITIAL_SESSION' || event === 'PASSWORD_RECOVERY') && session) {
         router.push('/set-password');
       }
     });
