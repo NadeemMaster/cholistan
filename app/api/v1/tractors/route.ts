@@ -5,12 +5,14 @@ import { z } from 'zod';
 
 const createTractorSchema = z.object({
   business_profile_id: z.string().uuid(),
-  make: z.string().min(1, 'Make is required'),
-  model: z.string().min(1, 'Model is required'),
+  model_id: z.string().uuid(),
+  booking_id: z.string().uuid().optional(),
   chassis_number: z.string().min(1, 'Chassis number is required'),
   engine_number: z.string().min(1, 'Engine number is required'),
-  color: z.string().optional(),
-  price: z.number().min(0, 'Price must be positive'),
+  factory_delivery_no: z.string().optional(),
+  factory_invoice_no: z.string().optional(),
+  warranty_book_no: z.string().optional(),
+  battery_supplier: z.string().optional(),
   status: z.enum(['Available', 'Booked', 'Delivered']).default('Available'),
 });
 
