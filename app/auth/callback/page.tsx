@@ -9,32 +9,42 @@ export default function AuthCallbackPage() {
   const supabase = createClient();
 
   useEffect(() => {
-    const handleAuth = async () => {
-      // 1. The Supabase browser client automatically parses the #access_token fragment
-      // from the URL (Implicit Grant Flow) and establishes the session.
-      const { data: { session } } = await supabase.auth.getSession();
-      
-      if (session) {
-        // Successfully logged in via the hash fragment
+    // 1. Listen for the implicit grant hash parsing
+    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_IN' && session) {
         router.push('/set-password');
-        return;
       }
+    });
 
-      // 2. Fallback: If Supabase sent a ?code= parameter instead (PKCE Flow)
+    const handleAuth = async () => {
+      // 2. Check for PKCE code fallback
       const code = new URLSearchParams(window.location.search).get('code');
       if (code) {
         const { error } = await supabase.auth.exchangeCodeForSession(code);
-        if (!error) {
-          router.push('/set-password');
-          return;
+        if (error) {
+          router.push('/login?error=Verification_failed');
         }
+        // If success, onAuthStateChange fires SIGNED_IN
+        return;
       }
 
-      // 3. If neither worked, redirect to login
-      router.push('/login?error=Verification_failed');
+      // 3. If there is no code, and NO hash fragment containing an access_token, it's an invalid link.
+      // (If there IS a hash, we just wait for onAuthStateChange to do its job!)
+      if (!window.location.hash.includes('access_token')) {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session) {
+          router.push('/set-password');
+        } else {
+          router.push('/login?error=Invalid_invite_link');
+        }
+      }
     };
 
     handleAuth();
+
+    return () => {
+      authListener.subscription.unsubscribe();
+    };
   }, [router, supabase]);
 
   return (
