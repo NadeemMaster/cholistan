@@ -45,7 +45,7 @@ function CallbackContent() {
       const { data: { session } } = await supabase.auth.getSession();
       
       if (session) {
-        router.push('/set-password');
+        window.location.href = '/set-password';
         return;
       }
       
@@ -53,7 +53,7 @@ function CallbackContent() {
       setTimeout(async () => {
         const { data: { session: delayedSession } } = await supabase.auth.getSession();
         if (delayedSession) {
-          router.push('/set-password');
+          window.location.href = '/set-password';
         } else {
           setErrorMsg("Verification failed, invalid token, or link expired. Please try again.");
         }
