@@ -11,7 +11,9 @@ export default function AuthCallbackPage() {
   useEffect(() => {
     // 1. Listen for the implicit grant hash parsing
     const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-      if ((event === 'SIGNED_IN' || event === 'INITIAL_SESSION' || event === 'PASSWORD_RECOVERY') && session) {
+      if (session) {
+        // The event type can sometimes be unpredictable (USER_UPDATED, etc.)
+        // If there's a valid session, we redirect.
         router.push('/set-password');
       }
     });
@@ -23,20 +25,19 @@ export default function AuthCallbackPage() {
         const { error } = await supabase.auth.exchangeCodeForSession(code);
         if (error) {
           router.push('/login?error=Verification_failed');
+          return;
         }
-        // If success, onAuthStateChange fires SIGNED_IN
-        return;
       }
 
-      // 3. If there is no code, and NO hash fragment containing an access_token, it's an invalid link.
-      // (If there IS a hash, we just wait for onAuthStateChange to do its job!)
-      if (!window.location.hash.includes('access_token')) {
-        const { data: { session } } = await supabase.auth.getSession();
-        if (session) {
-          router.push('/set-password');
-        } else {
-          router.push('/login?error=Invalid_invite_link');
-        }
+      // 3. Actively check the session. 
+      // Supabase parses the hash automatically on load, so getSession() will return the authenticated user if the link was valid.
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      if (session) {
+        router.push('/set-password');
+      } else if (!window.location.hash.includes('access_token')) {
+        // If there's no session AND no hash to be parsed, the link is definitely invalid
+        router.push('/login?error=Invalid_invite_link');
       }
     };
 
