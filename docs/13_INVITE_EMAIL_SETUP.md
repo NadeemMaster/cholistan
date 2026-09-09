@@ -3,21 +3,30 @@
 > Status: Applies to the **user-invite flow** of Cholistan Tractors (Vercel + Supabase).
 > Linked files: [`app/auth/callback/page.tsx`](../app/auth/callback/page.tsx), [`app/api/auth/confirm/route.ts`](../app/api/auth/confirm/route.ts), [`middleware.ts`](../middleware.ts).
 
-## 1. Why the user was sent to `/login` instead of `/set-password`
+## 1. Root cause: `@supabase/ssr` 0.1.0 vs `getAll`/`setAll` API mismatch
 
-The previous flow did **three hops**:
+The codebase uses the **modern** `@supabase/ssr` cookie API (`getAll`/`setAll`) in the
+middleware, server client, and confirm route — but [`package.json`](../package.json)
+pinned `@supabase/ssr@^0.1.0`, and semver caret does **not** upgrade `0.x` minors
+(`^0.1.0` resolves to exactly `0.1.0`; no lockfile was tracked).
 
-1. Email button opened `/auth/callback?token_hash=...&type=invite`
-2. That page redirected to the API route `/api/auth/confirm?...`
-3. The API route called `verifyOtp`, then `NextResponse.redirect('/set-password')`
+In `@supabase/ssr@0.1.0`, `createServerClient` only understands `cookies.get`/`set`/`remove`.
+When we pass `getAll`/`setAll`, that version **silently ignores them** (verified from the
+0.1.0 runtime source on unpkg: `if (typeof cookies.get === "function") ... else // nothing`).
 
-The session cookie set in step 3 was silently dropped (`setAll` had an empty `try/catch`)
-and `/set-password` is guarded by the middleware, so the middleware bounced the user
-to `/login`.
+Result: even after a successful invite verification (browser session present in
+`document.cookie`), the **server could never read or write session cookies**:
 
-**Fix applied:** verification now runs directly in the callback **page** with the browser
-client. `@supabase/ssr` writes the session cookies itself, so the middleware sees the
-session on the very next navigation to `/set-password`.
+- middleware `supabase.auth.getUser()` → always `null`
+- `/set-password` is guarded → user bounced to `/login` (no error shown)
+
+**Fix applied (this repo):**
+
+- `@supabase/ssr` upgraded to `^0.12.7`, `@supabase/supabase-js` to `^2.114.0`
+- middleware, [`lib/supabase/server.ts`](../lib/supabase/server.ts), and
+  [`app/api/auth/confirm/route.ts`](../app/api/auth/confirm/route.ts) updated to the
+  current `setAll(cookiesToSet, headers)` signature (including the required
+  no-cache response headers)
 
 ## 2. Required Supabase URL Configuration
 

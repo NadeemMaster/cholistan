@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { createServerClient } from '@supabase/ssr';
+import { createServerClient, type CookieOptions } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import type { EmailOtpType } from '@supabase/supabase-js';
 
@@ -12,6 +12,8 @@ export async function GET(request: Request) {
   const type = searchParams.get('type') as EmailOtpType | null;
 
   const cookieStore = await cookies();
+
+  let cacheHeaders: Record<string, string> = {};
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -20,15 +22,24 @@ export async function GET(request: Request) {
         getAll() {
           return cookieStore.getAll();
         },
-        setAll(cookiesToSet: { name: string; value: string; options: any }[]) {
-          cookiesToSet.forEach(({ name, value, options }) => {
-            try {
-              cookieStore.set(name, value, options);
-            } catch {
-              // Server Component context — cookies will be attached to the
-              // final redirect response below so the session survives.
-            }
-          });
+        setAll(
+          cookiesToSet: { name: string; value: string; options: CookieOptions }[],
+          headers: Record<string, string>
+        ) {
+          try {
+            cookiesToSet.forEach(({ name, value, options }) =>
+              cookieStore.set(name, value, options)
+            );
+          } catch {
+            // The `setAll` method was called from a Server Component.
+            // This can be ignored if middleware refreshing
+            // user sessions.
+          }
+          // Collect cache headers so they can be applied to the final
+          // redirect response — auth responses must never be CDN-cached.
+          if (headers && Object.keys(headers).length > 0) {
+            cacheHeaders = headers;
+          }
         },
       },
     }
@@ -65,6 +76,9 @@ export async function GET(request: Request) {
   const responseCookies = cookieStore.getAll();
   responseCookies.forEach(({ name, value }) => {
     response.cookies.set(name, value);
+  });
+  Object.entries(cacheHeaders).forEach(([key, value]) => {
+    response.headers.set(key, value);
   });
 
   return response;
