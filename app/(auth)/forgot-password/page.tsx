@@ -23,7 +23,7 @@ export default function ForgotPasswordPage() {
     });
 
     if (rpcError) {
-      setError("An error occurred while verifying the email.");
+      setError(`RPC Error: ${rpcError.message}`);
       setLoading(false);
       return;
     }

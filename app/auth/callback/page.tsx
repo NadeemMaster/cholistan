@@ -45,7 +45,10 @@ function CallbackContent() {
       const { data: { session } } = await supabase.auth.getSession();
       
       if (session) {
-        window.location.href = '/set-password';
+        // Wait 1.5 seconds for @supabase/ssr to sync the session to HTTP cookies before redirecting
+        setTimeout(() => {
+          window.location.href = '/set-password';
+        }, 1500);
         return;
       }
       
