@@ -1,21 +1,35 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { createClient } from '@/lib/supabase/client';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
-export default function LoginPage() {
+function LoginContent() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
   const supabase = createClient();
+
+  useEffect(() => {
+    const errorParam = searchParams.get('error');
+    const messageParam = searchParams.get('message');
+    if (errorParam) {
+      setError(errorParam.replace(/_/g, ' '));
+    }
+    if (messageParam) {
+      setMessage(messageParam.replace(/_/g, ' '));
+    }
+  }, [searchParams]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+    setMessage(null);
     setLoading(true);
 
     const { error: loginError } = await supabase.auth.signInWithPassword({
@@ -40,6 +54,12 @@ export default function LoginPage() {
       {error && (
         <div className="mb-4 bg-red-50 text-red-600 p-3 rounded-md text-sm">
           {error}
+        </div>
+      )}
+
+      {message && (
+        <div className="mb-4 bg-green-50 text-green-700 p-3 rounded-md text-sm">
+          {message}
         </div>
       )}
 
@@ -82,5 +102,18 @@ export default function LoginPage() {
         </button>
       </form>
     </>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="text-center">
+        <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary mb-4"></div>
+        <p className="text-gray-600 dark:text-gray-300">Loading...</p>
+      </div>
+    }>
+      <LoginContent />
+    </Suspense>
   );
 }
