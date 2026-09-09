@@ -21,45 +21,51 @@ export async function GET(request: Request) {
           return cookieStore.getAll();
         },
         setAll(cookiesToSet: { name: string; value: string; options: any }[]) {
-          try {
-            cookiesToSet.forEach(({ name, value, options }) =>
-              cookieStore.set(name, value, options)
-            );
-          } catch (error) {
-            // The `setAll` method was called from a Server Component.
-            // This can be ignored if you have middleware refreshing
-            // user sessions.
-          }
+          cookiesToSet.forEach(({ name, value, options }) => {
+            try {
+              cookieStore.set(name, value, options);
+            } catch {
+              // Server Component context — cookies will be attached to the
+              // final redirect response below so the session survives.
+            }
+          });
         },
       },
     }
   );
+
+  let redirectUrl: string;
 
   if (token_hash && type) {
     const { error } = await supabase.auth.verifyOtp({
       type,
       token_hash,
     });
-    if (!error) {
-      if (type === 'invite' || type === 'recovery') {
-        return NextResponse.redirect(`${origin}/set-password`);
-      }
-      return NextResponse.redirect(`${origin}${next}`);
+    if (error) {
+      redirectUrl = `${origin}/login?error=${encodeURIComponent(error.message)}`;
+    } else if (type === 'invite' || type === 'recovery') {
+      redirectUrl = `${origin}/set-password`;
     } else {
-      // Pass the specific error message
-      return NextResponse.redirect(`${origin}/login?error=${encodeURIComponent(error.message)}`);
+      redirectUrl = `${origin}${next}`;
     }
-  }
-
-  if (code) {
+  } else if (code) {
     const { error } = await supabase.auth.exchangeCodeForSession(code);
-    if (!error) {
-      return NextResponse.redirect(`${origin}${next}`);
+    if (error) {
+      redirectUrl = `${origin}/login?error=${encodeURIComponent(error.message)}`;
     } else {
-      return NextResponse.redirect(`${origin}/login?error=${encodeURIComponent(error.message)}`);
+      redirectUrl = `${origin}${next}`;
     }
+  } else {
+    redirectUrl = `${origin}/login?error=Invalid_Request`;
   }
 
-  // return the user to an error page with some instructions
-  return NextResponse.redirect(`${origin}/login?error=Invalid_Request`);
+  // Build the redirect AFTER auth calls so any session cookies written by
+  // setAll (when in a mutable context) are carried onto the response.
+  const response = NextResponse.redirect(redirectUrl);
+  const responseCookies = cookieStore.getAll();
+  responseCookies.forEach(({ name, value }) => {
+    response.cookies.set(name, value);
+  });
+
+  return response;
 }
