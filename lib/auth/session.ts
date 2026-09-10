@@ -54,7 +54,13 @@ export async function getCurrentUserProfile(): Promise<SessionProfile | null> {
     };
   }
 
-  const role = profile.roles?.name ?? null;
+  // supabase-js types embedded relations as arrays, but PostgREST returns
+  // a single object for many-to-one embeds (users.role_id -> roles.id).
+  // Handle both shapes defensively.
+  const roles = profile.roles as { name?: string }[] | { name?: string } | null | undefined;
+  const role = Array.isArray(roles)
+    ? roles[0]?.name ?? null
+    : roles?.name ?? null;
   const businessProfileId = profile.business_profile_id ?? null;
 
   return {
