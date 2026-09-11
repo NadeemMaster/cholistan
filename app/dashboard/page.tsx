@@ -77,6 +77,19 @@ export default async function DashboardOverviewPage() {
             Track available tractors, engine numbers and delivery status.
           </p>
         </a>
+
+        {/* Team card (Super Admin only) */}
+        {profile?.isSuperAdmin && (
+          <a
+            href="/dashboard/team"
+            className="block bg-white dark:bg-gray-800 shadow rounded-lg p-6 hover:shadow-md transition-shadow border border-gray-100 dark:border-gray-700"
+          >
+            <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Team</h2>
+            <p className="text-sm text-gray-500 dark:text-gray-300">
+              Invite admins and manage your dealership team members.
+            </p>
+          </a>
+        )}
       </div>
     </div>
   );
