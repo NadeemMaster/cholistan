@@ -34,8 +34,11 @@ export default async function TeamPage() {
     .order('name');
 
   const memberList = (members ?? []).map((m) => {
-    const r = Array.isArray(m.roles) ? m.roles[0]?.name : m.roles?.name;
-    return { ...m, roleName: r ?? '—' };
+    // PostgREST returns a many-to-one relation as an object at runtime,
+    // while supabase-js types embed it as an array — handle both shapes.
+    const r = m.roles as { name?: string }[] | { name?: string } | null | undefined;
+    const roleName = Array.isArray(r) ? r[0]?.name : r?.name;
+    return { ...m, roleName: roleName ?? '—' };
   });
 
   return (
