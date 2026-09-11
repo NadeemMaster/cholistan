@@ -2,6 +2,7 @@ export type BusinessProfile = {
   id: string;
   name: string;
   dealer_code?: string;
+  address?: string;
   logo_url?: string;
   created_at: string;
 };
