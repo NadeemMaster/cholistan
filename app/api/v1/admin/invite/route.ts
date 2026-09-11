@@ -42,9 +42,10 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Profile not found' }, { status: 403 });
   }
 
-  const callerRole = Array.isArray(callerProfile.roles)
-    ? callerProfile.roles[0]?.name
-    : callerProfile.roles?.name;
+  const roles: any = callerProfile.roles;
+  const callerRole = Array.isArray(roles)
+    ? roles[0]?.name
+    : roles?.name;
 
   if (callerRole !== 'Super Admin' || !callerProfile.business_profile_id) {
     return NextResponse.json(
