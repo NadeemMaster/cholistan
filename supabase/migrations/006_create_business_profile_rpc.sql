@@ -73,5 +73,5 @@ $$;
 
 -- Grant execute to authenticated users only (the function itself
 -- enforces the Super Admin requirement).
-REVOKE ALL ON FUNCTION public.create_business_profile(text, text, text, text) FROM PUBLIC, ANONYMOUS;
+REVOKE ALL ON FUNCTION public.create_business_profile(text, text, text, text) FROM PUBLIC, anon;
 GRANT EXECUTE ON FUNCTION public.create_business_profile(text, text, text, text) TO authenticated;

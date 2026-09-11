@@ -19,6 +19,7 @@ WHERE id IN (
 -- =============================================================
 
 -- Users can see profiles of users in their own business
+DROP POLICY IF EXISTS "Users can view their team" ON public.users;
 CREATE POLICY "Users can view their team"
     ON public.users
     FOR SELECT
@@ -27,6 +28,7 @@ CREATE POLICY "Users can view their team"
     );
 
 -- Super Admin can see all user profiles (system-level management)
+DROP POLICY IF EXISTS "Super Admin can view all users" ON public.users;
 CREATE POLICY "Super Admin can view all users"
     ON public.users
     FOR SELECT
@@ -39,6 +41,7 @@ CREATE POLICY "Super Admin can view all users"
 --    self-SELECT; here we only ensure self-UPDATE stays possible
 --    for basic info without touching role/business.)
 -- =============================================================
+DROP POLICY IF EXISTS "Users can update own basic info" ON public.users;
 CREATE POLICY "Users can update own basic info"
     ON public.users
     FOR UPDATE

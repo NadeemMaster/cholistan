@@ -32,7 +32,7 @@ BEGIN
 END;
 $$;
 
-CREATE TRIGGER on_auth_user_created
+CREATE OR REPLACE TRIGGER on_auth_user_created
     AFTER INSERT ON auth.users
     FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();
 
@@ -90,24 +90,28 @@ $$;
 -- =============================================================
 
 -- Regular users can see the business they belong to
+DROP POLICY IF EXISTS "Users can view their business profile" ON public.business_profiles;
 CREATE POLICY "Users can view their business profile"
     ON public.business_profiles
     FOR SELECT
     USING (id = public.get_my_business_profile_id());
 
 -- Super Admin can see every business profile (system-level management)
+DROP POLICY IF EXISTS "Super Admin can view all business profiles" ON public.business_profiles;
 CREATE POLICY "Super Admin can view all business profiles"
     ON public.business_profiles
     FOR SELECT
     USING (public.is_super_admin());
 
 -- Only Super Admin can create a business (initial setup)
+DROP POLICY IF EXISTS "Super Admin can create business profiles" ON public.business_profiles;
 CREATE POLICY "Super Admin can create business profiles"
     ON public.business_profiles
     FOR INSERT
     WITH CHECK (public.is_super_admin());
 
 -- Only Super Admin can edit a business
+DROP POLICY IF EXISTS "Super Admin can update business profiles" ON public.business_profiles;
 CREATE POLICY "Super Admin can update business profiles"
     ON public.business_profiles
     FOR UPDATE
@@ -118,6 +122,7 @@ CREATE POLICY "Super Admin can update business profiles"
 -- 4. RLS: public.users — Super Admin can update users
 --    (link them to a business, assign roles, activate/deactivate)
 -- =============================================================
+DROP POLICY IF EXISTS "Super Admin can update users" ON public.users;
 CREATE POLICY "Super Admin can update users"
     ON public.users
     FOR UPDATE
